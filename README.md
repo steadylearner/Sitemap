@@ -463,7 +463,7 @@ fn main() {
 }
 ```
 
-When you run it with **$cargo run --bin main**, it will show log similar to this.
+When you run it with **$cargo run --bin main**, it will show log similar to this
 
 ```console
 fire; instant=Instant
@@ -481,7 +481,7 @@ http://www.steadylearner.com/blog/read/How-to-install-Rust
 errors = []
 ```
 
-with interval seconds you defined before.
+or more with interval seconds you define.
 
 The thread Rust API here is optional. It will work without it.
 
