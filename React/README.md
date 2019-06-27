@@ -245,7 +245,7 @@ Everything is ready.
 
 Type **$node sitemap-builder.js**.
 
-The console will show you the message **âSitemap was builtâ** for you. Then, You can verify the result with **sitemap.xml**.
+The console will show you the message **Sitemap was built** for you. Then, You can verify the result with **sitemap.xml**.
 
 It will be similiar to
 
