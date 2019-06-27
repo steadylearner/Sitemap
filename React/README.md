@@ -26,7 +26,7 @@ I want to share you how to do that with this post. We will use [React Router Sit
 
 Its goal is to extract only routes made with React Router and return **.xml** type sitemap.
 
-I found that it was not complete to meet every requirements to make sitemap. But it will be still useful to start and understand what you need.
+I found that it was not complete to meet every requirements to make sitemap. But it will be still useful to start and find what you need.
 
 Because you have to know how to deal with ES6+ JavaScript Codes, You may find that following [the documentation from the author][React Router Sitemap] is not easy.
 
