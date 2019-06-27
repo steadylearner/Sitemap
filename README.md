@@ -43,7 +43,7 @@ You can use them later with thread. Then, include them inside interval to automa
 1. [Rust Sitemap Crate]
 2. [What is image sitemap]
 3. [What is sitemap](https://support.google.com/webmasters/answer/156184?hl=en)
-4. [How to build a sitemap](https://www.google.com/search?client=firefox-b-d&amp;q=how+to+build+sitemap)
+4. [How to build a sitemap](https://www.google.com/search?client=firefox-b-d&q=how+to+build+sitemap)
 5. [Futuers in Rust](https://docs.rs/futures/0.2.3-docs-yank.4/futures/)
 6. [Thread in Rust](https://doc.rust-lang.org/std/thread/)
 7. [futures-timer]
@@ -116,7 +116,7 @@ pub fn image_sitemap_renewal() -> std::io::Result<()> {
     let connection = init_pool().get().unwrap();
 
     let image_results = images
-        .load::<Image>(&amp;*connection)
+        .load::<Image>(&*connection)
         .expect("Error loading images");
 
     println!(
@@ -132,7 +132,7 @@ pub fn image_sitemap_renewal() -> std::io::Result<()> {
     <loc>https://www.steadylearner.com</loc>
 "#;
 
-    fs::write("image_sitemap.xml", &amp;start_xml)?;
+    fs::write("image_sitemap.xml", &start_xml)?;
     let mut result = OpenOptions::new().append(true).open("image_sitemap.xml").unwrap();
 
     let mut image_xml = String::new();
@@ -149,7 +149,7 @@ pub fn image_sitemap_renewal() -> std::io::Result<()> {
             image.content,
             image.media_url,
         );
-        image_xml.push_str(&amp;image_url);
+        image_xml.push_str(&image_url);
     }
 
     if let Err(e) = writeln!(result, "{}{}", image_xml , r#"  </url>
@@ -203,13 +203,13 @@ http://www.steadylearner.com/static/images/*
 
     for url in urls {
         let payload = url.loc.get_url().unwrap();
-        println!("{}", &amp;payload);
-        let payload_with_new_line = format!("{}\n", &amp;payload);
-        output.push_str(&amp;payload_with_new_line);
+        println!("{}", &payload);
+        let payload_with_new_line = format!("{}\n", &payload);
+        output.push_str(&payload_with_new_line);
     }
 
-    println!("{:#?}", &amp;output);
-    write("sitemap.txt", &amp;output)?;
+    println!("{:#?}", &output);
+    write("sitemap.txt", &output)?;
 
     println!("errors = {:?}", errors);
 
@@ -222,7 +222,7 @@ You may use all selector * and others before you make **sitemap.txt** from **sit
 Lastly, our **sitemap_renewal** function will be similar to
 
 ```rust
-pub fn sitemap_renewal(static_routes: Vec<&amp;str>, paths_for_other_sitemaps: Vec<&amp;str>) -> std::io::Result<()> {
+pub fn sitemap_renewal(static_routes: Vec<&str>, paths_for_other_sitemaps: Vec<&str>) -> std::io::Result<()> {
     // Use database with Rust diesel to write sitemap.xml first
     use crate::schema::posts::dsl::*;
     let connection = init_pool().get().unwrap();
@@ -230,7 +230,7 @@ pub fn sitemap_renewal(static_routes: Vec<&amp;str>, paths_for_other_sitemaps: V
     let post_results = posts
         .filter(published.eq(true))
         .order(created_at.desc())
-        .load::<Post>(&amp;*connection)
+        .load::<Post>(&*connection)
         .expect("Error loading posts");
 
     println!(
@@ -240,7 +240,7 @@ pub fn sitemap_renewal(static_routes: Vec<&amp;str>, paths_for_other_sitemaps: V
 
     let mut output = Vec::<u8>::new();
     {
-        let sitemap_writer = SiteMapWriter::new(&amp;mut output);
+        let sitemap_writer = SiteMapWriter::new(&mut output);
 
         let mut urlwriter = sitemap_writer
             .start_urlset()
@@ -315,7 +315,7 @@ pub fn sitemap_renewal(static_routes: Vec<&amp;str>, paths_for_other_sitemaps: V
         // sitemap_index_writer.end().expect("close sitemap block");
     }
 
-    write("sitemap.xml", &amp;output)?;
+    write("sitemap.xml"::, &output)?;
     sitemap_txt_renewal();
 
     Ok(())
@@ -437,7 +437,7 @@ use tokio::timer::Interval;
 
 use std::time::{Duration, Instant};
 
-use std::thread;
+use std::threa
 
 fn main() {
     thread::Builder::new()
@@ -483,7 +483,7 @@ errors = []
 
 or more with interval seconds you define.
 
-The thread Rust API here is optional. It will work without it.
+The **thread** Rust API here is optional. It will work without it.
 
 <br />
 
